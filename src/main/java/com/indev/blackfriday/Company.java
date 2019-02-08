@@ -1,12 +1,18 @@
 package com.indev.blackfriday;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Company {
+    Product currentProduct ;
+    Map<Integer,Product> products = new HashMap() ;
     public float sells(String capsule) {
         return 0;
     }
 
-    public void stock(int i, String capsule, int i1) {
-
+    public void stock(int price, String intitule, int quantite) {
+        currentProduct = new Product(price, intitule , quantite) ;
+        products.put(currentProduct.getPrice(),currentProduct) ;
     }
 
     public Company to(int i) {
@@ -18,7 +24,12 @@ public class Company {
     }
 
     public int totalAssets() {
-        return 20;
+         int totalassets =0 ;
+            for(Product prd:products.values())
+            {
+                totalassets += prd.getTotalPrice() ;
+            }
+        return totalassets;
     }
 
     public Company blackFriday() {
