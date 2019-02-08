@@ -1,15 +1,14 @@
 package com.indev.blackfriday;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Company {
-    private final int fixedQuantite =5 ;private final float margebenefits = 0.2F ;
+    private  int fixedQuantite =5 ;private  float margibenefits = 0.2F ;
     Product currentProduct ;
     HashMap<String,Product> products = new HashMap<String, Product>() ;
     public float sells(String intitule) {
         Product produit = Product.getProductByIntitule(intitule,products);
-        float resultSells = (fixedQuantite*produit.getPrice())*(1+margebenefits);
+        float resultSells = (fixedQuantite*produit.getPrice())*(1+margibenefits);
         Product.setProductQuantiteSelles(fixedQuantite,produit) ;
         return resultSells;
     }
@@ -29,14 +28,18 @@ public class Company {
 
     public int totalAssets() {
          int totalassets =0 ;
+
             for(Product prd:products.values())
             {
-                totalassets += prd.getTotalPrice() ;
+                totalassets += prd.getTotalPrice(margibenefits) ;
             }
         return totalassets;
     }
 
     public Company blackFriday() {
+            this.margibenefits=0.1F;
+            this.fixedQuantite=10;
         return this;
+
     }
 }

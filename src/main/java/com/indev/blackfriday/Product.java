@@ -62,8 +62,8 @@ public class Product {
          }
     }
 
-    public float getTotalPrice(){
-        return this.price*(this.quantiteInStock + quantiteSelled*1.2F) ;
+    public float getTotalPrice(float marginBenefits){
+        return this.price*(this.quantiteInStock + quantiteSelled*(1+marginBenefits)) ;
     }
     public static Product getProductByIntitule(String intitule , HashMap<String,Product> products)
     {
