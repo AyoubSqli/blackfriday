@@ -3,7 +3,10 @@ package com.indev.blackfriday;
 import java.util.HashMap;
 
 public class Company {
-    private  int fixedQuantite =5 ;private  float margibenefits = 0.2F ;
+    private  int fixedQuantite =5 ;
+    private  float margibenefits = 0.2F ;
+    private float marginBenefitsBlackFriday = 0.1F ;
+    private int fixedQuantiteBlackFriday=10 ;
     Product currentProduct ;
     HashMap<String,Product> products = new HashMap<String, Product>() ;
     public float sells(String intitule) {
@@ -18,14 +21,6 @@ public class Company {
         products.put(currentProduct.getIntitule(),currentProduct) ;
     }
 
-    public Company to(int i) {
-        return this;
-    }
-
-    public float computeBenefit() {
-        return 0;
-    }
-
     public int totalAssets() {
          int totalassets =0 ;
 
@@ -37,8 +32,8 @@ public class Company {
     }
 
     public Company blackFriday() {
-            this.margibenefits=0.1F;
-            this.fixedQuantite=10;
+            this.margibenefits=marginBenefitsBlackFriday;
+            this.fixedQuantite=fixedQuantiteBlackFriday;
         return this;
 
     }

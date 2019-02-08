@@ -3,7 +3,7 @@ package com.indev.blackfriday;
 import java.util.HashMap;
 
 public class Product {
-    private final int quantiteSelledInitial=0;
+    private static final int quantiteSelledInitial=0;
     private int price ;
      private String intitule ;
      private int quantiteInStock ;
