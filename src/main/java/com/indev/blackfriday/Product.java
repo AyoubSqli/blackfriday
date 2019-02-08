@@ -1,14 +1,22 @@
 package com.indev.blackfriday;
 
-public class Product {
-     private int price ;
-     private String intitule ;
-     private int quantite ;
+import java.util.HashMap;
 
-    public Product(int price, String intitule, int quantite) {
+public class Product {
+    private final int quantiteSelledInitial=0;
+    private int price ;
+     private String intitule ;
+     private int quantiteInStock ;
+     private int quantiteSelled ;
+
+     public Product(){
+
+     }
+    public Product(int quantiteInStock, String intitule, int price) {
         this.price = price;
         this.intitule = intitule;
-        this.quantite = quantite;
+        this.quantiteInStock = quantiteInStock;
+        this.quantiteSelled = quantiteSelledInitial ;
     }
 
     public int getPrice() {
@@ -27,14 +35,42 @@ public class Product {
         this.intitule = intitule;
     }
 
-    public int getQuantite() {
-        return quantite;
+    public int getQuantiteInStock() {
+        return quantiteInStock;
     }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
+    public void setQuantiteInStock(int quantiteInStock) {
+        this.quantiteInStock = quantiteInStock;
     }
-    public int getTotalPrice(){
-        return this.price*this.quantite ;
+
+    public int getQuantiteSelled() {
+        return quantiteSelled;
+    }
+
+    public void setQuantiteSelled(int quantiteSelled) {
+        this.quantiteSelled = quantiteSelled;
+    }
+
+    public static void setProductQuantiteSelles(int fixedQuantite,Product product) {
+         if(product.getQuantiteInStock() >= fixedQuantite)
+         {
+             product.setQuantiteInStock(product.getQuantiteInStock()-fixedQuantite);
+             product.setQuantiteSelled(product.getQuantiteSelled()+fixedQuantite);
+         }else
+         {
+                throw new RuntimeException() ;
+         }
+    }
+
+    public float getTotalPrice(){
+        return this.price*(this.quantiteInStock + quantiteSelled*1.2F) ;
+    }
+    public static Product getProductByIntitule(String intitule , HashMap<String,Product> products)
+    {
+        for(Product prd:products.values())
+        {
+            if(prd.intitule.equals(intitule)) return prd ;
+        }
+        return new Product() ;
     }
 }
